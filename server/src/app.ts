@@ -5,7 +5,7 @@ class App {
   public express: express.Application;
 
   constructor() {
-    this.express = express()
+    this.express = express.default()
     dotenv.config();
   }
 }

@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { Application } from 'express';
 import { Services } from '../services';
 import { Connection } from 'mongoose';
 
@@ -15,7 +16,7 @@ export class ServerHelpers {
     return new Promise((resolve) => setTimeout(resolve, ms))
   }
 
-  public static loadRoutes(app, express, services: Services) {
+  public static loadRoutes(app: Application, express: any, services: Services) {
     const routes = this.checkMainDirectory(path.join(__dirname, '..', 'routes'));
     if (!routes || !routes.length) {
       throw new Error('Did not find any routes');
@@ -55,7 +56,7 @@ export class ServerHelpers {
   }
 
   public static recurseDirectory(directory: string, priorPath: Array<string> = []): Array<any> {
-    const results = [];
+    const results: any[] = [];
 
     fs.readdirSync(directory).forEach((file) => {
       const fullPath = path.join(directory, file);
